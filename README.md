@@ -19,6 +19,22 @@
 
 ### Rota do Swagger
 
-
 - Rota Documentação Swagger `/docs` (Swagger)
+
+### Iniciando Projeto Local 
+
+1. baixe o Projeto através do github 
+~~~bash
+git clone git@github.com:Hyagobsantos/Crud-Users.git
+~~~
+
+2. com o docker compose instalado rode o comando
+~~~docker
+docker-compose up -d
+~~~
+
+3. acesse a base url dev para fazer requisições pelo insomnia ou postman
+`http://localhost:3000/`
+
+
 
