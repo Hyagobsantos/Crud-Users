@@ -1,0 +1,246 @@
+{
+   "openapi": "3.0.0",
+   "info": {
+       "title": "Users",
+       "description":"Documentation from Users Api",
+       "version": "1.0.0",
+       "contact": {
+           "email": "hyagobezerra2011@gmail.com"
+       }
+   },
+   "paths": {
+       "/api/v1/user":{
+           "post":{
+                "summary": "User registration",
+                "description": "route responsible for registering a user",
+                "tags": ["Users"],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema":{
+                                "$ref": "#/components/schemas/user"
+                            },
+                            "examples": {
+                                "user":{
+                                    "value":{
+                                        "email": "hyagobezerra2011@gmail.com",
+                                        "password":"teste001"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/user"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "E-mail already registered!"
+                    }
+                   
+                }
+           }
+       },
+       "/api/v1/users":{
+           "get":{
+               "summary": "get Users",
+               "description": "Get a list of Users",
+               "tags": ["Users"],
+               "responses": {
+                   "400":{
+                       "description": "Not Found Users"
+                   },
+                   "200":{
+                       "description": "User List response",
+                       "content": {
+                           "application/json":{
+                               "schema":{
+                                   "type": "array",
+                                   "$ref": "#/components/schemas/user"
+                               },
+                               "examples": {
+                                   "users": {
+                                       "description": "array users",
+                                       "value":[
+                                           {
+                                            "id":1,
+                                            "email": "hyagobezerra2011@gmail.com",
+                                            "password":"teste001"
+                                           },
+                                           {
+                                            "id":2,
+                                            "email": "hyagobezerra2012@gmail.com",
+                                            "password":"teste002"
+                                           }
+                                       ]
+                                   }
+                               }
+                           }
+                       }
+                   }
+               }
+           },
+           "delete":{
+                "summary": "Delete Users",
+                "description": "Delete all Users",
+                "tags": ["Users"],
+                "responses": {
+                    "400":{
+                        "description": "Not Found Users"
+                    },
+                    "200":{
+                        "description": "User List response",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                "description": "were deleted ${parseInt(users['count'])} Users"
+                                }
+                            }
+                        }
+                    }
+                }
+           }
+       },
+       "/api/v1/users/{user_id}":{
+            "get":{
+                "summary": "Find User by Id",
+                "description": "retrieve user by id",
+                "tags": ["Users"],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in":"path"  ,
+                        "description": "was find user by id",
+                        "required": true
+                        
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/user"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Not Found Users"
+                    }
+                }
+            },
+            "put": {
+                "summary": "update User by Id",
+                "description": "update user by id",
+                "tags": ["Users"],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in":"path"  ,
+                        "description": "was updated user by id",
+                        "required": true
+                        
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema":{
+                                "$ref": "#/components/schemas/user"
+                            },
+                            "examples": {
+                                "user":{
+                                    "value":{
+                                        "email": "hyagobezerra2011@gmail.com",
+                                        "password":"teste001"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/user"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Not Found Users"
+                    }
+                }
+            },
+            "delete":{
+                "summary": "Delete User by Id",
+                "description": "Delete user by id",
+                "tags": ["Users"],
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in":"path"  ,
+                        "description": "was Deleted user by id",
+                        "required": true
+                        
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema":{
+                                    "description": "user successfully deleted"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Not Found Users"
+                    }
+                }
+            }
+
+       }
+
+
+   },
+
+   "components": {
+       "schemas": {
+           "user":{
+               "type": "object",
+               "properties": {
+                   "email":{
+                       "type": "string"
+                   },
+                   "password":{
+                       "type": "string"
+                   },
+                   "id":{
+                       "type": "integer"
+                   }
+               },
+               "required": ["email","password"]
+           }
+       }
+   }
+   
+}

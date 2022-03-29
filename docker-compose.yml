@@ -1,0 +1,33 @@
+version: '3.6'
+
+services:
+  app:
+    container_name: 'node_2022-03-27'
+    build: ./node
+    command: npm start
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./node:/usr/app
+    links:
+      - postgresql
+    depends_on:
+      - postgresql
+
+  postgresql:
+    image: postgres
+    container_name: pg-docker
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=ngphtfloygdaek
+      - POSTGRES_PASSWORD=0729ae68ba0aba622b911f5ea5b0f725c353cf0a782f0b8eb5237bc1ac1477a9
+    volumes:
+      - ./db:/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    restart: always
+
+  
+ 
+
+ 
